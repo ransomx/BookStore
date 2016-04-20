@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Advertisements xmlns="http://schemas.microsoft.com/AspNet/AdRotator-Schedule-File">
+  <Ad>
+    <ImageUrl>~/Images/wikibooks.png</ImageUrl>
+    <NavigateUrl>https://en.wikibooks.org/wiki/Main_Page</NavigateUrl>
+    <AlternateText>Wikibooks. Web site</AlternateText>
+    <Impressions>100</Impressions>
+  </Ad>
+
+</Advertisements>

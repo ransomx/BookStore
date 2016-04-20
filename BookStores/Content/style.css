@@ -1,0 +1,93 @@
+﻿body {
+    margin: 0 auto;
+    width: 80%;
+    background-color: #ffffff;
+}
+
+header{
+    width: 100%;
+    min-height:150px;
+    display: inline-block;
+    position: relative;
+}
+
+header .logo{
+    width: 80%;
+    padding: 20px;
+}
+
+header .headerRight{
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 50px;
+}
+
+header .menuBar{
+    padding: 10px;
+    background-color: #efe6e6;
+}
+
+header .headerInfo{
+    text-align: center;
+}
+
+header p{
+    font-weight: bold;
+}
+
+.wrapper{
+    margin: 0 auto;
+    width: 100%;
+    display: inline-block;
+}
+
+aside{
+    width: 150px;
+    min-height: 300px;
+    background-color: aqua;
+    overflow: hidden;
+    display: block;
+}
+
+.leftPanel{
+    float: left;
+}
+
+.rightPanel{
+    float: right;
+    text-align: center;
+}
+
+.imageBook{
+    width: 100px;
+    height: auto;
+}
+
+.imageDetails{
+    width: 300px;
+    height: auto;
+}
+
+footer{
+    background-color: #efe6e6;
+}
+
+/* Home.aspx */
+
+.search{
+    width: auto;
+    float: right;
+    padding: 20px;
+}
+
+.content{
+    min-height: 400px;
+    width: auto;
+}
+
+
+
+
+
+

@@ -1,0 +1,77 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="BookStores.MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Book store</title>
+    <link rel="stylesheet" type="text/css" href="/Content/style.css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <header>
+            <div class="logo">
+                <img src="Images/logo.jpg" />
+            </div>
+            
+            <div class="headerRight">
+            <div class="menuBar">
+                <asp:Panel ID="PanelNoLoggin" runat="server">
+                    <a href="Login.aspx">Login </a> / <a href="Register.aspx"> Register </a>
+                </asp:Panel>
+                <asp:Panel ID="PanelLogged" runat="server">
+                    Logged in: <asp:Label ID="LblLoggedUser" runat="server" Text="Label"></asp:Label> 
+                    <asp:Button ID="BtnLogout" runat="server" Text="Log Out" OnClick="Logout" />
+                    <div class="headerInfo">
+                Items in cart:
+                    <asp:DropDownList ID="ShoppingCart" runat="server"></asp:DropDownList>
+                <p>Total value:
+                    <asp:Label ID="LblTotalValue" runat="server" Text="0"/>
+                </p>
+             </div>
+                </asp:Panel>
+            </div>
+            
+            </div>
+        </header>
+
+        <div class="wrapper">
+            <aside class="leftPanel">
+                <asp:Menu ID="MenuSide" runat="server">
+                    <Items>
+                        <asp:MenuItem Text="Home" Value="Home" NavigateUrl="~/Home.aspx"></asp:MenuItem>
+                        <asp:MenuItem Text="Books" Value="Books" NavigateUrl="~/Books.aspx"></asp:MenuItem>
+                        <asp:MenuItem Text="Categories" Value="Categories">
+                            <asp:MenuItem Text="Thriller" Value="Thriller" NavigateUrl="~/Books.aspx?cat=Thriller"></asp:MenuItem>
+                            <asp:MenuItem Text="Romance" Value="Romance" NavigateUrl="~/Books.aspx?cat=Romance"></asp:MenuItem>
+                            <asp:MenuItem Text="Science" Value="Science" NavigateUrl="~/Books.aspx?cat=Science"></asp:MenuItem>
+                            <asp:MenuItem Text="Children" Value="Children" NavigateUrl="~/Books.aspx?cat=Children"></asp:MenuItem>
+                        </asp:MenuItem>
+                    </Items>
+                </asp:Menu>
+            </aside>
+            <aside class="rightPanel">
+                <asp:Image ID="ImageBook"  runat="server" CssClass="imageBook" ImageUrl="/Images/book.png" />
+                <br/>
+                <asp:LinkButton ID="LBtnTitle" runat="server" Text="BookTitle" OnClick="LBtnTitle_Click"/>
+                <asp:AdRotator ID="AdRotator1" runat="server" AdvertisementFile="~/Ads/AdBarnes.xml" />
+                <asp:AdRotator ID="AdRotator2" runat="server" AdvertisementFile="~/Ads/AdWiki.xml" />
+            </aside>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+            
+        </div>
+        <footer>
+            <p>Contact info: Kolonivägen 39, Åhus 236 12, Sweden</p>
+            <p>Online: <%= Application["NoOfOnline"] %>; </p>
+            <p>Total visits: <%= Application["NoOfVisitors"] %> </p>
+       </footer>
+        <div>
+            @Copyright rnsmx/
+        </div>
+    </form>
+    
+</body>
+</html>

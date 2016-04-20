@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Advertisements xmlns="http://schemas.microsoft.com/AspNet/AdRotator-Schedule-File">
+  <Ad>
+    <ImageUrl>~/Images/barnes.jpg</ImageUrl>
+    <NavigateUrl>http://www.barnesandnoble.com/</NavigateUrl>
+    <AlternateText>Barnes. Web site</AlternateText>
+    <Impressions>100</Impressions>
+  </Ad>
+  
+</Advertisements>

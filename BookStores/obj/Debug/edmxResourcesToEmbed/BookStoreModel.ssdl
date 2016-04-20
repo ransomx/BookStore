@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BooksModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="BooksModelStoreContainer">
+    <EntitySet Name="Books" EntityType="BooksModel.Store.Books" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Customers" EntityType="BooksModel.Store.Customers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Administrators" EntityType="BooksModel.Store.Administrators" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Orders1" EntityType="BooksModel.Store.Orders1" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BooksOrders" EntityType="BooksModel.Store.BooksOrders" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_BooksOrders_Books" Association="BooksModel.Store.FK_BooksOrders_Books">
+      <End Role="Books" EntitySet="Books" />
+      <End Role="BooksOrders" EntitySet="BooksOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BooksOrders_Orders" Association="BooksModel.Store.FK_BooksOrders_Orders">
+      <End Role="Orders" EntitySet="Orders1" />
+      <End Role="BooksOrders" EntitySet="BooksOrders" />
+    </AssociationSet>
+    <AssociationSet Name="OrdersCustomers" Association="BooksModel.Store.OrdersCustomers">
+      <End Role="Orders" EntitySet="Orders1" />
+      <End Role="Customers" EntitySet="Customers" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Books">
+    <Key>
+      <PropertyRef Name="ISBN" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ISBN" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Author" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Category" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Price" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Administrators">
+    <Key>
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Orders1">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ISBN_f" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email_f" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Customers_Email" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="BooksOrders">
+    <Key>
+      <PropertyRef Name="Book_ISBN" />
+      <PropertyRef Name="Orders_Id" />
+    </Key>
+    <Property Name="Book_ISBN" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Orders_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="OrdersCustomers">
+    <End Role="Orders" Type="BooksModel.Store.Orders1" Multiplicity="*" />
+    <End Role="Customers" Type="BooksModel.Store.Customers" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="Customers_Email" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BooksOrders_Books">
+    <End Role="Books" Type="BooksModel.Store.Books" Multiplicity="1" />
+    <End Role="BooksOrders" Type="BooksModel.Store.BooksOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Books">
+        <PropertyRef Name="ISBN" />
+      </Principal>
+      <Dependent Role="BooksOrders">
+        <PropertyRef Name="Book_ISBN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BooksOrders_Orders">
+    <End Role="BooksOrders" Type="BooksModel.Store.BooksOrders" Multiplicity="*" />
+    <End Role="Orders" Type="BooksModel.Store.Orders1" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BooksOrders">
+        <PropertyRef Name="Orders_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
